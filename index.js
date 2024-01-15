@@ -22,7 +22,7 @@ app.use("/api/jobs", jobRoute);
 app.use("/api/users/jobs", jobApplication);
 app.use("/api/admin/users/appliedjobs", jobApplied);
 
-
-app.listen(5000, ()=>{
+let port = process.env.PORT || 3000
+app.listen(port, ()=>{
     console.log('App is listening. ');
 })
