@@ -6,9 +6,15 @@ const authRoute = require("./routes/auth")
 const jobRoute = require("./routes/jobs")
 const jobApplication = require("./routes/jobApplication")
 const jobApplied = require("./routes/jobsApplied")
-var cors = require('cors');
+const cors = require('cors');
+const helmet = require('helmet')
+const compression = require('compression')
+
+
 
 app.use(cors())
+app.use(helmet())
+app.use(compression())
 app.use(express.json())
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
