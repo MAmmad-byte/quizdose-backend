@@ -16,6 +16,7 @@ module.exports.validateJobs = (jobs)=>{
   country: Joi.string().required().min(3).max(55),
   address: Joi.string().required().min(3).max(255),
   noOfPositions: Joi.number().required().min(1).max(255),
+  featured: Joi.boolean(),
   lastDate: Joi.string().isoDate().required(), 
 })
 return schema.validate(jobs);

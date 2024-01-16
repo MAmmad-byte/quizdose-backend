@@ -38,6 +38,7 @@ route.post("/", async (req, res) => {
     description: req.body.description,
     jobType: req.body.jobType,
     address: req.body.address,
+    featured: req.body.featured,
     city: req.body.city,
     country: req.body.country,
     lastDate: req.body.lastDate,
@@ -45,8 +46,9 @@ route.post("/", async (req, res) => {
     noOfPositions: req.body.noOfPositions,
     salary: req.body.salary,
   });
+
   // job.lastDate = new Date(job.lastDate).toString().split('T')
-  console.log(job.lastDate);
+  
   job = await job.save();
   res.send(job);
 });
