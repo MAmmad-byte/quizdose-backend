@@ -12,7 +12,9 @@ const compression = require('compression')
 
 
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://quizdose-backend.vercel.app/'
+}))
 app.use(helmet())
 app.use(compression())
 app.use(express.json())
