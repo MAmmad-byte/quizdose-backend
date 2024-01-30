@@ -16,13 +16,11 @@ const schema = mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"User",
-        unique:true
     }, 
     quiz_id :{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:"Quiz",
-        unique:true
     },
     attemptDate:{
         type:Date,
