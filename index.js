@@ -17,7 +17,7 @@ app.use(helmet())
 app.use(compression())
 app.use(express.json())
 
-app.use("/", (req, res)=>{
+app.get("/", (req, res)=>{
     res.send("Working")
     });
 app.use("/api/users", userRoute);
