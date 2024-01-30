@@ -7,9 +7,6 @@ const userValidation = Joi.object({
     lastName: Joi.string().min(3).max(55).required().default(""),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).max(55).required(),
-    phone: Joi.string().min(5).max(55).required(),
-    address: Joi.string().min(5).max(255).required(),
-    dob: Joi.string().isoDate().required()
 })
 
 module.exports.validateUser = validateUser = (user)=>{
@@ -43,22 +40,6 @@ const userSchema = new mongoose.Schema({
     max: 255,
     required: true,
   },
-  phone: {
-    type: String,
-    min: 5,
-    max: 55,
-    required: true,
-  },
-  address: {
-    type: String,
-    min: 5,
-    max: 255,
-    required: true,
-  },
-  dob: {
-    type: Date,
-    required: true,
-  },
   role:{
     isCandidate:{
       type: Boolean,
@@ -68,7 +49,7 @@ const userSchema = new mongoose.Schema({
       type:Boolean,
       default:false
     },
-    isEmployee:{
+    isModerator:{
       type:Boolean,
       default:false
     }

@@ -5,28 +5,6 @@ const _ = require("lodash")
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 
-route.get('/', async(req,res)=>{
-    let users;
-    if (req.query.search) {
-        users = await User.find({
-            $or:
-[
-            {firstName: { $regex: req.query.search, $options: "i" }},
-            {lastName: { $regex: req.query.search, $options: "i" }},
-            {phone: { $regex: req.query.search, $options: "i" }},
-            {address: { $regex: req.query.search, $options: "i" }},
-           { email: { $regex: req.query.search, $options: "i" }}
-]
-            
-            // email: { $regex: req.query.search, $options: "i" },
-        
-          }).select("-password");
-      } else {
-
-          users = await User.find().select("-password");
-    }
-    res.send(users);
-})
 route.get('/:id', async(req,res)=>{
     const user = await User.findById(req.params.id).select("-password")
     res.send(user);
@@ -43,9 +21,6 @@ route.post('/',async(req,res)=>{
     user =  new User({
         firstName:req.body.firstName,
         lastName:req.body.lastName,
-        phone:req.body.phone,
-        address:req.body.address,
-        dob:req.body.dob,
         email:req.body.email,
         password:req.body.password
     });
@@ -54,7 +29,7 @@ route.post('/',async(req,res)=>{
         user.password = await bcrypt.hash(user.password, salt);
         let response = await user.save();
         let token = jwt.sign({_id:response._id, firstName:response.firstName, role:response.role}, "MySecureKey" )
-        res.send(token);
+        res.send(token); // it must be in header
 
 })
 

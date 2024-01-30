@@ -16,14 +16,8 @@ route.post('/', async(req,res)=>{
     if(!validatePassword) return  res.status(400).send("Invalid Email or Password")
 
     let token = jwt.sign({_id:user._id, firstName:user.firstName, role:user.role}, "MySecureKey")
-    res.send(token)
+    res.send(token) // it must be in header
 })
-
-
-
-
-
-
 
 function validate(user){
      const userValidation = Joi.object({
