@@ -4,10 +4,16 @@ const route = require("express").Router();
 const _ = require("lodash")
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
+const moderator = require("../middleware/moderator");
 
 route.get('/:id', async(req,res)=>{
     const user = await User.findById(req.params.id).select("-password")
     res.send(user);
+})
+
+route.get('/',[auth, moderator], async(req,res)=>{
+    const users = await User.find().select("firstName lastName email ")
+    res.send(users)
 })
 
 
